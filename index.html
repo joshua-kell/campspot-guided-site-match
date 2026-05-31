@@ -16,27 +16,25 @@
   --border: #E0DDD6; --white: #ffffff;
 }
 html, body { height: 100%; }
-body { background: #F4F1EC; padding-bottom: 70px; }
+body { background: #F4F1EC; padding-bottom: 72px; }
 
-/* TOP BAR */
 .topbar { background: var(--soil); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
 .topbar-logo { font-size: 14px; font-weight: 600; color: #fff; }
 .topbar-logo span { font-weight: 400; opacity: 0.6; }
 .ai-badge { font-size: 10px; font-weight: 600; background: var(--forest-mid); color: var(--forest-pale); padding: 2px 10px; border-radius: 99px; letter-spacing: 0.06em; text-transform: uppercase; margin-left: 10px; }
 .topbar-park { font-size: 12px; color: rgba(255,255,255,0.65); }
 
-/* NAV */
-.navtabs { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 0 20px; display: flex; }
+.navtabs { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 0 20px; display: flex; overflow-x: auto; }
 .navtab { font-size: 12px; padding: 10px 16px; border-bottom: 2px solid transparent; color: var(--gray-dark); cursor: pointer; white-space: nowrap; }
 .navtab.active { color: var(--soil); border-bottom-color: var(--soil); font-weight: 500; }
 
 /* LAYOUT */
 .main { display: flex; flex-direction: row; width: 100%; }
-.left-panel { width: 300px; min-width: 300px; background: var(--white); border-right: 0.5px solid var(--border); display: flex; flex-direction: column; overflow-y: auto; }
+.left-panel { width: 360px; min-width: 360px; background: var(--white); border-right: 0.5px solid var(--border); display: flex; flex-direction: column; overflow-y: auto; }
 .right-panel { flex: 1; background: #F0EDE7; display: flex; flex-direction: column; overflow: auto; }
 
-/* LEFT PANEL */
-.section { padding: 13px 16px; border-bottom: 0.5px solid var(--border); }
+/* LEFT PANEL SECTIONS */
+.section { padding: 14px 18px; border-bottom: 0.5px solid var(--border); }
 .section-label { font-size: 10px; font-weight: 600; color: var(--gray-dark); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 9px; }
 .call-badge { display: flex; align-items: center; gap: 8px; background: #FAECE7; border: 0.5px solid #F0997B; border-radius: 7px; padding: 7px 11px; margin-bottom: 11px; }
 .pulse { width: 8px; height: 8px; border-radius: 50%; background: #993C1D; flex-shrink: 0; animation: pulse 1.5s infinite; }
@@ -50,46 +48,78 @@ body { background: #F4F1EC; padding-bottom: 70px; }
 .pill { font-size: 11px; background: var(--white); color: var(--gray-dark); padding: 2px 8px; border-radius: 99px; border: 0.5px solid var(--border); }
 .pref-tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .pref-tag { font-size: 12px; background: var(--gray-bg); color: var(--soil-light); padding: 4px 10px; border-radius: 99px; border: 0.5px solid var(--border); }
+
+/* AI READ with inline colored badges */
 .ai-read { background: var(--forest-light); border: 0.5px solid var(--forest-pale); border-radius: 7px; padding: 10px 12px; }
 .ai-read-label { font-size: 10px; font-weight: 600; color: var(--forest-mid); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 5px; }
-.ai-read-text { font-size: 12px; color: var(--forest); line-height: 1.6; }
-.recs-list { padding: 8px 16px 16px; display: flex; flex-direction: column; gap: 8px; }
-.rec-card { background: var(--white); border: 0.5px solid var(--border); border-radius: 8px; padding: 10px 12px; cursor: pointer; }
-.rec-card.selected { border: 1.5px solid var(--forest-mid); background: var(--forest-light); }
-.rec-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; }
-.rec-site { font-size: 14px; font-weight: 600; color: #1a1a1a; }
-.rec-site span { font-size: 12px; font-weight: 400; color: var(--gray-dark); }
-.score-badge { font-size: 11px; font-weight: 500; padding: 2px 9px; border-radius: 99px; white-space: nowrap; }
+.ai-read-text { font-size: 12px; color: var(--forest); line-height: 1.7; }
+.site-badge { display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 99px; margin: 0 2px; }
+.site-badge-best { background: var(--teal-mid); color: #04342C; }
+.site-badge-strong { background: #9FE1CB; color: #085041; }
+.site-badge-good { background: #EF9F27; color: #412402; }
+.site-badge-anchor { background: var(--sky); color: #fff; }
+
+/* REC CARDS with color left border */
+.recs-list { padding: 8px 18px 18px; display: flex; flex-direction: column; gap: 10px; }
+.rec-card {
+  background: var(--white);
+  border: 0.5px solid var(--border);
+  border-left: 4px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.rec-card.best { border-left-color: var(--teal-mid); }
+.rec-card.strong { border-left-color: #9FE1CB; border-left-width: 4px; border-left-color: #1D9E75; }
+.rec-card.good { border-left-color: var(--amber); }
+.rec-card.selected { background: var(--forest-light); border-color: var(--forest-mid); border-left-width: 5px; box-shadow: 0 2px 8px rgba(59,109,17,0.15); }
+.rec-card.selected.best { border-color: var(--teal); border-left-color: var(--teal); }
+.rec-card.selected.good { border-color: var(--amber); border-left-color: var(--amber); }
+
+.rec-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; }
+.rec-card-left { display: flex; align-items: center; gap: 8px; }
+.rec-site-badge { font-size: 13px; font-weight: 700; padding: 2px 10px; border-radius: 6px; }
+.rec-site-badge-best { background: var(--teal-mid); color: #04342C; }
+.rec-site-badge-strong { background: #9FE1CB; color: #085041; }
+.rec-site-badge-good { background: #EF9F27; color: #412402; }
+.rec-loop { font-size: 11px; color: var(--gray-dark); }
+.score-badge { font-size: 10px; font-weight: 600; padding: 2px 9px; border-radius: 99px; white-space: nowrap; }
 .score-best { background: var(--teal-light); color: var(--teal); border: 0.5px solid var(--teal-mid); }
 .score-strong { background: var(--forest-light); color: var(--forest-mid); border: 0.5px solid var(--forest-pale); }
 .score-good { background: var(--amber-light); color: var(--amber); border: 0.5px solid var(--amber-mid); }
 .rec-reason { font-size: 12px; color: var(--gray-dark); line-height: 1.55; margin-bottom: 8px; }
-.rec-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.rec-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 9px; }
 .rec-tag { font-size: 11px; color: var(--gray-dark); background: var(--gray-bg); padding: 2px 8px; border-radius: 99px; border: 0.5px solid var(--border); }
 .rec-footer { display: flex; align-items: center; justify-content: space-between; }
 .rec-price { font-size: 13px; font-weight: 600; color: #1a1a1a; }
 .rec-price span { font-size: 11px; font-weight: 400; color: var(--gray-dark); }
-.btn-hold { font-size: 11px; font-weight: 500; background: transparent; color: var(--soil); border: 0.5px solid var(--border); padding: 4px 11px; border-radius: 6px; cursor: pointer; }
+.btn-hold { font-size: 11px; font-weight: 500; background: transparent; color: var(--soil); border: 0.5px solid var(--border); padding: 5px 12px; border-radius: 6px; cursor: pointer; }
 .btn-hold.held { background: var(--amber-light); color: var(--amber); border-color: var(--amber-mid); }
-.btn-book { font-size: 11px; font-weight: 500; background: var(--forest-mid); color: #fff; border: none; padding: 4px 11px; border-radius: 6px; cursor: pointer; }
+.btn-book { font-size: 11px; font-weight: 500; background: var(--forest-mid); color: #fff; border: none; padding: 5px 12px; border-radius: 6px; cursor: pointer; }
 .btn-book.booked { background: var(--teal); }
 
 /* RIGHT PANEL */
-.map-header { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 11px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.map-header { background: var(--white); border-bottom: 0.5px solid var(--border); padding: 12px 20px; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 .map-title { font-size: 11px; font-weight: 600; color: var(--gray-dark); text-transform: uppercase; letter-spacing: 0.07em; }
-.map-subtitle { font-size: 10px; color: var(--gray-dark); margin-top: 1px; }
-.legend { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.map-subtitle { font-size: 10px; color: var(--gray-dark); margin-top: 2px; }
+.legend { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 2px; }
 .legend-item { display: flex; align-items: center; gap: 4px; font-size: 10px; color: var(--gray-dark); }
-.legend-dot { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; }
-.map-body { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
-.map-card { background: #E8EDE2; border-radius: 10px; border: 0.5px solid #C5CEBC; padding: 18px; }
-.map-card-title { font-size: 10px; font-weight: 600; color: var(--gray-dark); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
-.row-label { font-size: 10px; color: var(--gray-dark); margin-bottom: 6px; padding-left: 2px; }
-.sites-row { display: flex; gap: 6px; padding-bottom: 4px; flex-wrap: nowrap; overflow-x: auto; }
-.lane { background: #D4DFC8; border: 0.5px solid #B8C9A8; border-radius: 4px; margin: 8px 0; height: 26px; display: flex; align-items: center; justify-content: center; }
+.legend-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+.map-body { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+.map-card { background: #E8EDE2; border-radius: 10px; border: 0.5px solid #C5CEBC; padding: 20px; }
+.map-card-title { font-size: 10px; font-weight: 600; color: var(--gray-dark); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+.row-label { font-size: 10px; color: var(--gray-dark); margin-bottom: 8px; padding-left: 2px; }
+.sites-row { display: flex; gap: 8px; padding-bottom: 4px; flex-wrap: nowrap; overflow-x: auto; }
+.lane { background: #D4DFC8; border: 0.5px solid #B8C9A8; border-radius: 4px; margin: 10px 0; height: 28px; display: flex; align-items: center; justify-content: center; }
 .lane-text { font-size: 10px; color: #5F7045; font-weight: 500; letter-spacing: 0.06em; }
-.proximity-notes { margin-top: 14px; padding: 10px 14px; background: rgba(255,255,255,0.65); border-radius: 8px; border: 0.5px solid var(--border); display: flex; gap: 16px; flex-wrap: wrap; }
-.context-strip { background: var(--white); border-radius: 8px; border: 0.5px solid var(--border); padding: 10px 16px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+.proximity-notes { margin-top: 16px; padding: 12px 16px; background: rgba(255,255,255,0.7); border-radius: 8px; border: 0.5px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+.prox-row { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; line-height: 1.5; }
+.prox-badge { font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 5px; white-space: nowrap; flex-shrink: 0; }
+
+.context-strip { background: var(--white); border-radius: 8px; border: 0.5px solid var(--border); padding: 12px 16px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .context-label { font-size: 10px; font-weight: 600; color: var(--gray-dark); text-transform: uppercase; letter-spacing: 0.07em; margin-right: 4px; }
 .context-item { font-size: 11px; color: var(--gray-dark); }
 
@@ -99,12 +129,30 @@ body { background: #F4F1EC; padding-bottom: 70px; }
 .footer-note strong { color: #1a1a1a; }
 .footer-actions { display: flex; gap: 8px; }
 .btn-outline { font-size: 13px; font-weight: 500; background: transparent; color: #1a1a1a; border: 1px solid var(--border); padding: 8px 18px; border-radius: 7px; cursor: pointer; }
-.btn-confirm { font-size: 14px; font-weight: 600; background: var(--forest-mid); color: #fff; border: none; padding: 8px 22px; border-radius: 7px; cursor: pointer; }
+.btn-confirm { font-size: 14px; font-weight: 600; background: var(--forest-mid); color: #fff; border: none; padding: 8px 24px; border-radius: 7px; cursor: pointer; }
 
 /* SITE BOXES */
-.site-box { width: 62px; min-height: 74px; border-radius: 5px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 5px 3px; flex-shrink: 0; text-align: center; transition: transform 0.12s; }
+.site-box {
+  width: 74px; min-height: 82px; border-radius: 6px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 6px 4px; flex-shrink: 0; text-align: center;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
 .site-box.clickable { cursor: pointer; }
-.site-box.selected { transform: scale(1.08); }
+.site-box.selected {
+  transform: scale(1.1);
+  box-shadow: 0 0 0 3px rgba(15,110,86,0.3), 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .main { flex-direction: column; }
+  .left-panel { width: 100%; min-width: 0; border-right: none; border-bottom: 0.5px solid var(--border); }
+  .right-panel { width: 100%; }
+  .topbar-park { display: none; }
+  .map-header { flex-direction: column; }
+}
 </style>
 </head>
 <body>
@@ -168,22 +216,30 @@ body { background: #F4F1EC; padding-bottom: 70px; }
     <div class="section">
       <div class="ai-read">
         <div class="ai-read-label">✦ AI read</div>
-        <div class="ai-read-text">3 available full-hookup sites within 2 rows of site 47. Sites 44 and 49 are adjacent. Site 52 is across the loop lane — about 40ft away but shadier. All allow dogs. Ranked by proximity and stated preferences.</div>
+        <div class="ai-read-text">
+          3 available full-hookup sites near <span class="site-badge site-badge-anchor">47</span>.
+          <span class="site-badge site-badge-best">49</span> and <span class="site-badge site-badge-strong">44</span> are directly adjacent.
+          <span class="site-badge site-badge-good">52</span> is across the loop lane — about 40ft away but shadier.
+          All allow dogs. Ranked by proximity and stated preferences.
+        </div>
       </div>
     </div>
 
-    <div style="font-size:10px;font-weight:600;color:var(--gray-dark);text-transform:uppercase;letter-spacing:0.07em;padding:12px 16px 4px;">
+    <div style="font-size:10px;font-weight:600;color:var(--gray-dark);text-transform:uppercase;letter-spacing:0.07em;padding:12px 18px 4px;">
       Recommended sites
     </div>
 
     <div class="recs-list">
 
-      <div class="rec-card selected" id="card-49" onclick="selectRec(49)">
-        <div class="rec-top">
-          <span class="rec-site">Site 49 <span>· Loop C</span></span>
+      <div class="rec-card best selected" id="card-49" onclick="selectRec(49)">
+        <div class="rec-card-header">
+          <div class="rec-card-left">
+            <span class="rec-site-badge rec-site-badge-best">Site 49</span>
+            <span class="rec-loop">Loop C</span>
+          </div>
           <span class="score-badge score-best">★ Best match</span>
         </div>
-        <div class="rec-reason">Directly adjacent to site 47 — families can share a fire ring area. Pull-through, no backing required for a 30ft trailer. Mixed shade from mature pines along the east edge.</div>
+        <div class="rec-reason">Directly adjacent to site 47 — families can share a fire ring area. Pull-through, no backing required for a 30ft trailer. Mixed shade from mature pines.</div>
         <div class="rec-tags">
           <span class="rec-tag">Full hookup</span>
           <span class="rec-tag">Pull-through</span>
@@ -199,12 +255,15 @@ body { background: #F4F1EC; padding-bottom: 70px; }
         </div>
       </div>
 
-      <div class="rec-card" id="card-44" onclick="selectRec(44)">
-        <div class="rec-top">
-          <span class="rec-site">Site 44 <span>· Loop C</span></span>
+      <div class="rec-card strong" id="card-44" onclick="selectRec(44)">
+        <div class="rec-card-header">
+          <div class="rec-card-left">
+            <span class="rec-site-badge rec-site-badge-strong">Site 44</span>
+            <span class="rec-loop">Loop C</span>
+          </div>
           <span class="score-badge score-strong">Strong match</span>
         </div>
-        <div class="rec-reason">Other side of site 47, same row. Back-in site, slightly tighter for a 30ft trailer but workable. Full afternoon shade — the coolest spot in the row.</div>
+        <div class="rec-reason">Other side of site 47, same row. Back-in site, slightly tighter for a 30ft trailer but workable. Full afternoon shade — coolest spot in the row.</div>
         <div class="rec-tags">
           <span class="rec-tag">Full hookup</span>
           <span class="rec-tag">Back-in</span>
@@ -220,12 +279,15 @@ body { background: #F4F1EC; padding-bottom: 70px; }
         </div>
       </div>
 
-      <div class="rec-card" id="card-52" onclick="selectRec(52)">
-        <div class="rec-top">
-          <span class="rec-site">Site 52 <span>· Loop C</span></span>
+      <div class="rec-card good" id="card-52" onclick="selectRec(52)">
+        <div class="rec-card-header">
+          <div class="rec-card-left">
+            <span class="rec-site-badge rec-site-badge-good">Site 52</span>
+            <span class="rec-loop">Loop C</span>
+          </div>
           <span class="score-badge score-good">Good option</span>
         </div>
-        <div class="rec-reason">Across the loop lane from site 47 — about 40ft away. More private feel, excellent shade, easy pull-through access. Short walk across the lane.</div>
+        <div class="rec-reason">Across the loop lane from site 47 — about 40ft away. More private feel, excellent shade, easy pull-through. Short walk across the lane.</div>
         <div class="rec-tags">
           <span class="rec-tag">Full hookup</span>
           <span class="rec-tag">Pull-through</span>
@@ -252,10 +314,10 @@ body { background: #F4F1EC; padding-bottom: 70px; }
         <div class="map-subtitle">AI-ranked by proximity to anchor booking · click any recommended site to select</div>
       </div>
       <div class="legend">
-        <div class="legend-item"><div class="legend-dot" style="background:#185FA5;border:1px solid #0C447C;"></div>Anchor (47)</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#5DCAA5;border:1px solid #0F6E56;"></div>Best match</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#185FA5;"></div>Anchor (47)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#5DCAA5;"></div>Best match</div>
         <div class="legend-item"><div class="legend-dot" style="background:#9FE1CB;border:1px solid #1D9E75;"></div>Strong match</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#EF9F27;border:1px solid #BA7517;"></div>Good option</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#EF9F27;"></div>Good option</div>
         <div class="legend-item"><div class="legend-dot" style="background:#D3D1C7;border:1px solid #B4B2A9;"></div>Occupied</div>
         <div class="legend-item"><div class="legend-dot" style="background:#F1EFE8;border:1px solid #B4B2A9;"></div>Available</div>
       </div>
@@ -268,11 +330,21 @@ body { background: #F4F1EC; padding-bottom: 70px; }
         <div class="sites-row" id="top-row"></div>
         <div class="lane"><span class="lane-text">— LOOP LANE —</span></div>
         <div class="sites-row" id="bot-row"></div>
-        <div class="row-label" style="margin-top:6px;">South row — faces AJ's Fun Center</div>
+        <div class="row-label" style="margin-top:8px;">South row — faces AJ's Fun Center</div>
+
         <div class="proximity-notes">
-          <span style="font-size:11px;color:#0F6E56;"><strong>Site 49 ↔ 47</strong>: directly adjacent — shared fire ring area possible</span>
-          <span style="font-size:11px;color:#3B6D11;"><strong>Site 44 ↔ 47</strong>: adjacent, opposite side of anchor</span>
-          <span style="font-size:11px;color:#BA7517;"><strong>Site 52 ↔ 47</strong>: ~40ft across lane, easy walk</span>
+          <div class="prox-row">
+            <span class="prox-badge" style="background:#5DCAA5;color:#04342C;">Site 49 ↔ 47</span>
+            <span style="color:#0F6E56;">Directly adjacent — shared fire ring area possible</span>
+          </div>
+          <div class="prox-row">
+            <span class="prox-badge" style="background:#9FE1CB;color:#085041;">Site 44 ↔ 47</span>
+            <span style="color:#3B6D11;">Adjacent, opposite side of anchor</span>
+          </div>
+          <div class="prox-row">
+            <span class="prox-badge" style="background:#EF9F27;color:#412402;">Site 52 ↔ 47</span>
+            <span style="color:#BA7517;">~40ft across lane — easy walk</span>
+          </div>
         </div>
       </div>
 
@@ -304,8 +376,6 @@ body { background: #F4F1EC; padding-bottom: 70px; }
 
 <script>
 var sel = 49;
-var held = {};
-var booked = {};
 
 var topSites = [
   {id:42,type:"back-in",status:"occupied"},
@@ -347,29 +417,29 @@ function box(s) {
   var c = C[s.status] || C.available;
   var isRec = recIds.indexOf(s.id) !== -1;
   var isSel = s.id === sel;
-  var bw = isSel ? "2.5px" : "1px";
+  var bw = isSel ? "3px" : "1.5px";
   var bc = isSel ? "#0F6E56" : c.br;
-  var shadow = isSel ? "0 0 0 3px #E1F5EE" : "none";
-  var scale = isSel ? "scale(1.08)" : "scale(1)";
+  var shadow = isSel ? "0 0 0 3px rgba(15,110,86,0.25), 0 4px 12px rgba(0,0,0,0.15)" : "none";
+  var scale = isSel ? "scale(1.1)" : "scale(1)";
   var typeLabel = s.type === "pull-thru" ? "Pull-thru" : "Back-in";
   var subContent = "";
   if (s.sub) {
     s.sub.split("\n").forEach(function(l){
-      subContent += '<div style="font-size:8px;color:'+c.sub+';line-height:1.3;">'+l+'</div>';
+      subContent += '<div style="font-size:8.5px;color:'+c.sub+';line-height:1.4;">'+l+'</div>';
     });
   }
   var statusContent = "";
-  if (s.status === "occupied") statusContent = '<div style="font-size:8px;color:'+c.sub+';margin-top:1px;">Occupied</div>';
-  if (s.status === "available") statusContent = '<div style="font-size:8px;color:'+c.sub+';margin-top:1px;">Available</div>';
-  if (s.status === "best") statusContent = '<div style="font-size:8px;color:'+c.sub+';margin-top:2px;font-weight:700;">★ Best</div>';
-  if (s.status === "strong") statusContent = '<div style="font-size:8px;color:'+c.sub+';margin-top:2px;">Strong</div>';
-  if (s.status === "good") statusContent = '<div style="font-size:8px;color:'+c.sub+';margin-top:2px;">Good opt.</div>';
+  if (s.status === "occupied") statusContent = '<div style="font-size:8.5px;color:'+c.sub+';margin-top:2px;">Occupied</div>';
+  if (s.status === "available") statusContent = '<div style="font-size:8.5px;color:'+c.sub+';margin-top:2px;">Available</div>';
+  if (s.status === "best") statusContent = '<div style="font-size:8.5px;color:'+c.sub+';margin-top:2px;font-weight:700;">★ Best</div>';
+  if (s.status === "strong") statusContent = '<div style="font-size:8.5px;color:'+c.sub+';margin-top:2px;">Strong</div>';
+  if (s.status === "good") statusContent = '<div style="font-size:8.5px;color:'+c.sub+';margin-top:2px;">Good opt.</div>';
 
   return '<div onclick="'+(isRec?'selectRec('+s.id+')':'')+'" class="site-box'+(isRec?' clickable':'')+(isSel?' selected':'')+'" style="'+
     'background:'+c.bg+';border:'+bw+' solid '+bc+';'+
     'box-shadow:'+shadow+';transform:'+scale+';">'+
-    '<div style="font-size:13px;font-weight:700;color:'+c.tx+';line-height:1.2;">'+s.id+'</div>'+
-    '<div style="font-size:9px;color:'+c.sub+';margin-top:2px;">'+typeLabel+'</div>'+
+    '<div style="font-size:15px;font-weight:700;color:'+c.tx+';line-height:1.2;">'+s.id+'</div>'+
+    '<div style="font-size:9px;color:'+c.sub+';margin-top:3px;">'+typeLabel+'</div>'+
     subContent+statusContent+
     '</div>';
 }
