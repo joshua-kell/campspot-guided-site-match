@@ -15,7 +15,7 @@
   --gray-bg: #F1EFE8; --gray-mid: #B4B2A9; --gray-dark: #5F5E5A; --gray-occ: #D3D1C7;
   --border: #E0DDD6; --white: #ffffff;
 }
-body { background: #F4F1EC; min-height: 100vh; }
+body { background: #F4F1EC; min-height: 100vh; padding-bottom: 70px; }
 .topbar { background: var(--soil); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
 .topbar-logo { font-size: 14px; font-weight: 600; color: #fff; }
 .topbar-logo span { font-weight: 400; opacity: 0.6; }
@@ -81,12 +81,27 @@ body { background: #F4F1EC; min-height: 100vh; }
 .context-strip { background: var(--white); border-radius: 8px; border: 0.5px solid var(--border); padding: 10px 16px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .context-label { font-size: 10px; font-weight: 600; color: var(--gray-dark); text-transform: uppercase; letter-spacing: 0.07em; margin-right: 4px; }
 .context-item { font-size: 11px; color: var(--gray-dark); }
-.footer { background: var(--white); border-top: 0.5px solid var(--border); padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.footer {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
 .footer-note { font-size: 11px; color: var(--gray-dark); display: flex; align-items: center; gap: 5px; }
 .footer-note strong { color: #1a1a1a; }
 .footer-actions { display: flex; gap: 8px; }
-.btn-outline { font-size: 12px; font-weight: 500; background: transparent; color: #1a1a1a; border: 0.5px solid var(--border); padding: 5px 14px; border-radius: 6px; cursor: pointer; }
-.btn-confirm { font-size: 12px; font-weight: 500; background: var(--forest-mid); color: #fff; border: none; padding: 5px 16px; border-radius: 6px; cursor: pointer; }
+.btn-outline { font-size: 13px; font-weight: 500; background: transparent; color: #1a1a1a; border: 1px solid var(--border); padding: 8px 18px; border-radius: 7px; cursor: pointer; }
+.btn-confirm { font-size: 14px; font-weight: 600; background: var(--forest-mid); color: #fff; border: none; padding: 8px 22px; border-radius: 7px; cursor: pointer; letter-spacing: 0.01em; }
 </style>
 </head>
 <body>
@@ -221,158 +236,4 @@ body { background: #F4F1EC; min-height: 100vh; }
     <div class="map-header">
       <div>
         <div class="map-title">Loop C · intelligent site grid</div>
-        <div class="map-subtitle">AI-ranked by proximity to anchor booking · click any recommended site to select</div>
-      </div>
-      <div class="legend">
-        <div class="legend-item"><div class="legend-dot" style="background:#185FA5;border:1px solid #0C447C;"></div>Anchor (47)</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#5DCAA5;border:1px solid #0F6E56;"></div>Best match</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#9FE1CB;border:1px solid #1D9E75;"></div>Strong match</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#EF9F27;border:1px solid #BA7517;"></div>Good option</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#D3D1C7;border:1px solid #B4B2A9;"></div>Occupied</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#F1EFE8;border:1px solid #B4B2A9;"></div>Available</div>
-      </div>
-    </div>
-
-    <div class="map-body">
-      <div class="map-card">
-        <div class="map-card-title">Loop C — Hill &amp; Hollow Campground</div>
-        <div class="row-label">North row — backs to tree line</div>
-        <div class="sites-row" id="top-row"></div>
-        <div class="lane"><span class="lane-text">— LOOP LANE —</span></div>
-        <div class="sites-row" id="bot-row"></div>
-        <div class="row-label" style="margin-top:6px;">South row — faces AJ's Fun Center</div>
-        <div class="proximity-notes">
-          <span style="font-size:11px;color:#0F6E56;"><strong>Site 49 ↔ 47</strong>: directly adjacent — shared fire ring area possible</span>
-          <span style="font-size:11px;color:#3B6D11;"><strong>Site 44 ↔ 47</strong>: adjacent, opposite side of anchor</span>
-          <span style="font-size:11px;color:#BA7517;"><strong>Site 52 ↔ 47</strong>: ~40ft across lane, easy walk</span>
-        </div>
-      </div>
-
-      <div class="context-strip">
-        <span class="context-label">Park context</span>
-        <span class="context-item">· AJ's Fun Center: 200ft south</span>
-        <span class="context-item">· Pool A: 3-min walk</span>
-        <span class="context-item">· Bathhouse C: nearest</span>
-        <span class="context-item">· Camp store: central</span>
-        <span class="context-item">· Gated entrance: north</span>
-      </div>
-    </div>
-
-    <div class="footer">
-      <div class="footer-note">
-        <span style="color:#3B6D11;font-size:13px;">✦</span>
-        Guided Site Match · AI-ranked by proximity, preferences &amp; site fit · <strong>3 options found</strong>
-      </div>
-      <div class="footer-actions">
-        <button class="btn-outline">View full grid</button>
-        <button class="btn-outline">Modify preferences</button>
-        <button class="btn-confirm" id="confirm-btn">Confirm site 49</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-var sel = 49;
-var held = {};
-var booked = {};
-
-var topSites = [
-  {id:42,type:"back-in",status:"occupied"},
-  {id:43,type:"back-in",status:"occupied"},
-  {id:44,type:"back-in",status:"strong"},
-  {id:45,type:"back-in",status:"occupied"},
-  {id:46,type:"back-in",status:"occupied"},
-  {id:47,type:"back-in",status:"anchor",sub:"Hargrove\nJul 4-11"},
-  {id:48,type:"pull-thru",status:"occupied"},
-  {id:49,type:"pull-thru",status:"best"},
-  {id:50,type:"back-in",status:"occupied"}
-];
-
-var botSites = [
-  {id:51,type:"pull-thru",status:"available"},
-  {id:52,type:"pull-thru",status:"good"},
-  {id:53,type:"back-in",status:"occupied"},
-  {id:54,type:"back-in",status:"occupied"},
-  {id:55,type:"pull-thru",status:"available"},
-  {id:56,type:"back-in",status:"occupied"},
-  {id:57,type:"back-in",status:"occupied"},
-  {id:58,type:"pull-thru",status:"available"},
-  {id:59,type:"back-in",status:"occupied"}
-];
-
-var C = {
-  anchor:   {bg:"#185FA5",br:"#0C447C",tx:"#E6F1FB",sub:"#B5D4F4"},
-  best:     {bg:"#5DCAA5",br:"#0F6E56",tx:"#04342C",sub:"#085041"},
-  strong:   {bg:"#9FE1CB",br:"#1D9E75",tx:"#085041",sub:"#0F6E56"},
-  good:     {bg:"#EF9F27",br:"#BA7517",tx:"#412402",sub:"#633806"},
-  occupied: {bg:"#D3D1C7",br:"#B4B2A9",tx:"#444441",sub:"#5F5E5A"},
-  available:{bg:"#F1EFE8",br:"#B4B2A9",tx:"#444441",sub:"#5F5E5A"}
-};
-
-var recIds = [49,44,52];
-var siteNames = {49:"site 49",44:"site 44",52:"site 52"};
-
-function box(s) {
-  var c = C[s.status] || C.available;
-  var isRec = recIds.indexOf(s.id) !== -1;
-  var isSel = s.id === sel;
-  var bw = isSel ? "2.5px" : "1px";
-  var bc = isSel ? "#0F6E56" : c.br;
-  var shadow = isSel ? "0 0 0 3px #E1F5EE" : "none";
-  var scale = isSel ? "scale(1.08)" : "scale(1)";
-  var typeLabel = s.type === "pull-thru" ? "Pull-thru" : "Back-in";
-  var subContent = "";
-  if (s.sub) {
-    s.sub.split("\n").forEach(function(l){
-      subContent += '<div style="font-size:8px;color:'+c.sub+';line-height:1.3;">'+l+'</div>';
-    });
-  }
-  var statusContent = "";
-  if (s.status === "occupied") statusContent = '<div style="font-size:8px;color:'+c.sub+';margin-top:1px;">Occupied</div>';
-  if (s.status === "available") statusContent = '<div style="font-size:8px;color:'+c.sub+';margin-top:1px;">Available</div>';
-  if (s.status === "best") statusContent = '<div style="font-size:8px;color:'+c.sub+';margin-top:2px;font-weight:700;">★ Best</div>';
-  if (s.status === "strong") statusContent = '<div style="font-size:8px;color:'+c.sub+';margin-top:2px;">Strong</div>';
-  if (s.status === "good") statusContent = '<div style="font-size:8px;color:'+c.sub+';margin-top:2px;">Good opt.</div>';
-  return '<div onclick="'+(isRec?'selectRec('+s.id+')':'')+'" style="'+
-    'width:62px;min-height:74px;border-radius:5px;background:'+c.bg+';'+
-    'border:'+bw+' solid '+bc+';display:flex;flex-direction:column;'+
-    'align-items:center;justify-content:center;padding:5px 3px;flex-shrink:0;'+
-    'text-align:center;cursor:'+(isRec?'pointer':'default')+';'+
-    'transform:'+scale+';box-shadow:'+shadow+';transition:transform 0.12s;">'+
-    '<div style="font-size:13px;font-weight:700;color:'+c.tx+';line-height:1.2;">'+s.id+'</div>'+
-    '<div style="font-size:9px;color:'+c.sub+';margin-top:2px;">'+typeLabel+'</div>'+
-    subContent+statusContent+
-    '</div>';
-}
-
-function render() {
-  document.getElementById('top-row').innerHTML = topSites.map(box).join('');
-  document.getElementById('bot-row').innerHTML = botSites.map(box).join('');
-}
-
-function selectRec(id) {
-  sel = id;
-  document.querySelectorAll('.rec-card').forEach(function(c){ c.classList.remove('selected'); });
-  var card = document.getElementById('card-'+id);
-  if (card) card.classList.add('selected');
-  document.getElementById('confirm-btn').textContent = 'Confirm '+siteNames[id];
-  render();
-}
-
-function holdSite(id) {
-  held[id] = true;
-  var b = document.getElementById('hold-'+id);
-  if (b) { b.textContent = 'Held 10m'; b.classList.add('held'); }
-}
-
-function bookSite(id) {
-  booked[id] = true;
-  var b = document.getElementById('book-'+id);
-  if (b) { b.textContent = 'Booked'; b.classList.add('booked'); }
-}
-
-render();
-</script>
-</body>
-</html>
+        <div class="map-subtitle">AI-ranke
